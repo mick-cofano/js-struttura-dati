@@ -228,12 +228,14 @@ $(document).ready(function() {
 // funzione che prende tutto l'array e lo inserisce in un LI
   function render(DOMElementId, array) {
     const cardListHTMLElement = document.getElementById(DOMElementId);
+    cardListHTMLElement.innerHTML = '';
 
     array.forEach((element) => {
       cardListHTMLElement.innerHTML += `<li> ${element.cardName}</li>`;
     });
   }
 
+// funzione per fare il select per valore potere
   function renderSelect(DOMElementId, array) {
     const select = document.getElementById(DOMElementId);
 
@@ -244,4 +246,15 @@ $(document).ready(function() {
   }
   render('listaCarte', cards);
   renderSelect('powerSelect', powerValues);
+
+
+// eventi da registrare
+
+  $("#powerSelect").change(function () {
+    console.log('>> Power Select Change');
+    const selectValue = parseInt($(this).val());
+    const filteredArray = filterByPower(selectValue, cards);
+
+    render('listaCarte', filteredArray);
+  });
 });
