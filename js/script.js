@@ -207,6 +207,14 @@ const cards = [{
     toughness: 0
   }
 }
-
 ];
 console.log(cards);
+
+// funzione che filtra cercando il "power" -> "score" = al numero che gli abbiamo dato
+function filterByPower(powerValue, array) {
+
+  return array.filter((element) => {
+    return element.score.power === powerValue;
+  });
+}
+console.log(' >>> CARTE FILTRATE PER POWER 3', filterByPower(5,cards));
