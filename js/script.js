@@ -252,9 +252,14 @@ $(document).ready(function() {
 
   $("#powerSelect").change(function () {
     console.log('>> Power Select Change');
-    const selectValue = parseInt($(this).val());
-    const filteredArray = filterByPower(selectValue, cards);
 
-    render('listaCarte', filteredArray);
+    if (isNaN($(this).val())) {
+      alert('scegli un valore numerico');
+    } else {
+      const selectValue = parseInt($(this).val());
+      const filteredArray = filterByPower(selectValue, cards);
+
+      render('listaCarte', filteredArray);
+    }
   });
 });
