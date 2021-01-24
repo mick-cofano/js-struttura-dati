@@ -13,13 +13,15 @@ $(document).ready(function() {
     'artefatti',
     'instantanei',
     'stregonerie'
-  ]
+  ];
 
-  // Abbiamo creato un oggetto di oggetti, come riferimento
-  // di una edizione. Se ad esempio scrivo editions['SP']
-  // allora otterrò tutto un oggetto che descrive
-  // con più dettagli l'edizione.
-  // come oggetto di oggetti, può essere navigato solo con il for-in
+
+  const powerValues = [1,2,3,4,5];
+// Abbiamo creato un oggetto di oggetti, come riferimento
+// di una edizione. Se ad esempio scrivo editions['SP']
+// allora otterrò tutto un oggetto che descrive
+// con più dettagli l'edizione.
+// come oggetto di oggetti, può essere navigato solo con il for-in
   const editions = {
 
     'BL': {
@@ -37,7 +39,7 @@ $(document).ready(function() {
 
   const cards = [{
 
-  // prima carta --------------------------------
+// prima carta --------------------------------
     cardName: 'Grizzly Bears',
 
     cost: {
@@ -65,7 +67,7 @@ $(document).ready(function() {
   },
 
 
-  // seconda carta ---------------------------------
+// seconda carta ---------------------------------
   {
 
     cardName: 'Sviluppatore guerriero',
@@ -95,7 +97,7 @@ $(document).ready(function() {
   },
 
 
-  // terza carta -----------------------------------
+// terza carta -----------------------------------
   {
 
     cardName: 'Mewtwo',
@@ -125,7 +127,7 @@ $(document).ready(function() {
 
   },
 
-  // quarta carta ------------------------------------
+// quarta carta ------------------------------------
   {
 
     cardName: 'Kelenvorita mascherato',
@@ -155,7 +157,7 @@ $(document).ready(function() {
   },
 
 
-  // quinta carta ------------------------------------
+// quinta carta ------------------------------------
   {
 
     cardName: 'carta trappola',
@@ -184,7 +186,7 @@ $(document).ready(function() {
 
   },
 
-  // sesta carta -------------------------------------
+// sesta carta -------------------------------------
   {
 
     cardName: 'Cristallo della libertà',
@@ -214,7 +216,7 @@ $(document).ready(function() {
   ];
   console.log(cards);
 
-  // funzione che filtra cercando il "power" -> "score" = al numero che gli abbiamo dato
+// funzione che filtra cercando il "power" -> "score" = al numero che gli abbiamo dato
   function filterByPower(powerValue, array) {
 
     return array.filter((element) => {
@@ -223,7 +225,7 @@ $(document).ready(function() {
   }
   console.log(' >>> CARTE FILTRATE PER POWER 3', filterByPower(5,cards));
 
-
+// funzione che prende tutto l'array e lo inserisce in un LI
   function render(DOMElementId, array) {
     const cardListHTMLElement = document.getElementById(DOMElementId);
 
@@ -232,6 +234,14 @@ $(document).ready(function() {
     });
   }
 
+  function renderSelect(DOMElementId, array) {
+    const select = document.getElementById(DOMElementId);
 
+    array.forEach((element) => {
+      select.innerHTML += `<option value=${element}> ${element} </option>`;
+    });
 
-})
+  }
+  render('listaCarte', cards);
+  renderSelect('powerSelect', powerValues);
+});
