@@ -231,7 +231,12 @@ $(document).ready(function() {
     cardListHTMLElement.innerHTML = '';
 
     array.forEach((element) => {
-      cardListHTMLElement.innerHTML += `<li> ${element.cardName}</li>`;
+      cardListHTMLElement.innerHTML += `<li>
+      <div>
+      <h2>Nome Carta: ${element.cardName} </h2>
+      <h4>Tipo Carta: ${element.cardType} </h4>
+      </div>
+      </li>`;
     });
   }
 
@@ -244,6 +249,7 @@ $(document).ready(function() {
     });
 
   }
+  // render iniziale
   render('listaCarte', cards);
   renderSelect('powerSelect', powerValues);
 
