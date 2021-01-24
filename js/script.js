@@ -1,220 +1,237 @@
-const fieldCodes = [
-  'W', 'U', 'B', 'R', 'G'
-]
+// output html
 
-const cardTypes = [
-  'terre',
-  'creature',
-  'incantesimi',
-  'artefatti',
-  'instantanei',
-  'stregonerie'
-]
+$(document).ready(function() {
 
-// Abbiamo creato un oggetto di oggetti, come riferimento
-// di una edizione. Se ad esempio scrivo editions['SP']
-// allora otterrò tutto un oggetto che descrive
-// con più dettagli l'edizione.
-// come oggetto di oggetti, può essere navigato solo con il for-in
-const editions = {
+  const fieldCodes = [
+    'W', 'U', 'B', 'R', 'G'
+  ]
 
-  'BL': {
-      edition: 'Boolean',
-      rarity: 'blue'
-  },
+  const cardTypes = [
+    'terre',
+    'creature',
+    'incantesimi',
+    'artefatti',
+    'instantanei',
+    'stregonerie'
+  ]
 
-  'SP': {
-      edition: 'Special',
-      rarity: 'red'
+  // Abbiamo creato un oggetto di oggetti, come riferimento
+  // di una edizione. Se ad esempio scrivo editions['SP']
+  // allora otterrò tutto un oggetto che descrive
+  // con più dettagli l'edizione.
+  // come oggetto di oggetti, può essere navigato solo con il for-in
+  const editions = {
+
+    'BL': {
+        edition: 'Boolean',
+        rarity: 'blue'
+    },
+
+    'SP': {
+        edition: 'Special',
+        rarity: 'red'
+    }
+
   }
 
-}
 
+  const cards = [{
 
-const cards = [{
+  // prima carta --------------------------------
+    cardName: 'Grizzly Bears',
 
-// prima carta --------------------------------
-  cardName: 'Grizzly Bears',
+    cost: {
+      genericCostNumber: 1,
+      costFields: [ // colors array con riferimento a fieldCodes
+        fieldCodes[0],  // 'W',  - un suo riferimento
+        fieldCodes[2]   // 'B'
+      ],
+    },
 
-  cost: {
-    genericCostNumber: 1,
-    costFields: [ // colors array con riferimento a fieldCodes
-      fieldCodes[0],  // 'W',  - un suo riferimento
-      fieldCodes[2]   // 'B'
-    ],
+    picture: 'images/i.png',
+    cardType: cardTypes[1],
+    cardObject: 'Bear',
+
+    editionType: editions['BL'],
+
+    description: 'Lorem ipsum',
+    story: 'Naltro Lorem Ipsum',
+
+    score: {
+      power: 2,  // filtrarlo per power
+      toughness: 2
+    }
+
   },
 
-  picture: 'images/i.png',
-  cardType: cardTypes[1],
-  cardObject: 'Bear',
 
-  editionType: editions['BL'],
+  // seconda carta ---------------------------------
+  {
 
-  description: 'Lorem ipsum',
-  story: 'Naltro Lorem Ipsum',
+    cardName: 'Sviluppatore guerriero',
 
-  score: {
-    power: 2,  // filtrarlo per power
-    toughness: 2
-  }
+    cost: {
+      genericCostNumber: 3,
+      costFields: [ // colors array con riferimento a fieldCodes
+        fieldCodes[2],
+        fieldCodes[3]
+      ],
+    },
 
-},
+    picture: 'images/g.png',  // da inserire immagine
+    cardType: cardTypes[1],
+    cardObject: 'Bear',
 
+    editionType: editions['BL'],
 
-// seconda carta ---------------------------------
-{
+    description: 'Lo sviluppatore guerriero spezza i byte in bit!',
+    story: 'Lo sviluppatore guerriero è una forma di essere umano evoluto.',
 
-  cardName: 'Sviluppatore guerriero',
+    score: {
+      power: 5,  // r
+      toughness: 3
+    }
 
-  cost: {
-    genericCostNumber: 3,
-    costFields: [ // colors array con riferimento a fieldCodes
-      fieldCodes[2],
-      fieldCodes[3]
-    ],
   },
 
-  picture: 'images/g.png',  // da inserire immagine
-  cardType: cardTypes[1],
-  cardObject: 'Bear',
 
-  editionType: editions['BL'],
+  // terza carta -----------------------------------
+  {
 
-  description: 'Lo sviluppatore guerriero spezza i byte in bit!',
-  story: 'Lo sviluppatore guerriero è una forma di essere umano evoluto.',
+    cardName: 'Mewtwo',
 
-  score: {
-    power: 5,  // r
-    toughness: 3
-  }
+    cost: {
+      genericCostNumber: 6,
+      costFields: [ // colors array con riferimento a fieldCodes
+        fieldCodes[0],
+        fieldCodes[0],
+        fieldCodes[0]
+      ],
+    },
 
-},
+    picture: 'images/mewtwo.png',  // da inserire immagine
+    cardType: cardTypes[1],
+    cardObject: 'Pokemon',
 
+    editionType: editions['BL'],
 
-// terza carta -----------------------------------
-{
+    description: 'Il potere della mente più forte del mondo',
+    story: 'Il pokemon clonato dalla leggenda di Mew',
 
-  cardName: 'Mewtwo',
+    score: {
+      power: 5,  // r
+      toughness: 5
+    }
 
-  cost: {
-    genericCostNumber: 6,
-    costFields: [ // colors array con riferimento a fieldCodes
-      fieldCodes[0],
-      fieldCodes[0],
-      fieldCodes[0]
-    ],
   },
 
-  picture: 'images/mewtwo.png',  // da inserire immagine
-  cardType: cardTypes[1],
-  cardObject: 'Pokemon',
+  // quarta carta ------------------------------------
+  {
 
-  editionType: editions['BL'],
+    cardName: 'Kelenvorita mascherato',
 
-  description: 'Il potere della mente più forte del mondo',
-  story: 'Il pokemon clonato dalla leggenda di Mew',
+    cost: {
+      genericCostNumber: 2,
+      costFields: [ // colors array con riferimento a fieldCodes
+        fieldCodes[0],
+        fieldCodes[2]
+      ],
+    },
 
-  score: {
-    power: 5,  // r
-    toughness: 5
-  }
+    picture: 'images/kelenvorita.png',  // da inserire immagine
+    cardType: cardTypes[1],
+    cardObject: 'Mezz\'orco',
 
-},
+    editionType: editions['SP'],
 
-// quarta carta ------------------------------------
-{
+    description: 'quando arriva a 0 punti ferita acquista un punto ferita invece di finire al cimitero e recupera forza',
+    story: 'Kelenvor predica la grigia ed imparziale giustizia della morte',
 
-  cardName: 'Kelenvorita mascherato',
+    score: {
+      power: 1,  // r
+      toughness: 4
+    }
 
-  cost: {
-    genericCostNumber: 2,
-    costFields: [ // colors array con riferimento a fieldCodes
-      fieldCodes[0],
-      fieldCodes[2]
-    ],
   },
 
-  picture: 'images/kelenvorita.png',  // da inserire immagine
-  cardType: cardTypes[1],
-  cardObject: 'Mezz\'orco',
 
-  editionType: editions['SP'],
+  // quinta carta ------------------------------------
+  {
 
-  description: 'quando arriva a 0 punti ferita acquista un punto ferita invece di finire al cimitero e recupera forza',
-  story: 'Kelenvor predica la grigia ed imparziale giustizia della morte',
+    cardName: 'carta trappola',
 
-  score: {
-    power: 1,  // r
-    toughness: 4
-  }
+    cost: {
+      genericCostNumber: 1,
+      costFields: [ // colors array con riferimento a fieldCodes
+        fieldCodes[1],
+        fieldCodes[2]
+      ],
+    },
 
-},
+    picture: 'images/cartatrappola.png',  // da inserire immagine
+    cardType: cardTypes[2],
+    cardObject: 'Carta trappola',
 
+    editionType: editions['SP'],
 
-// quinta carta ------------------------------------
-{
+    description: 'Quando il nemico attacca, si attiva questa carta trappola, riducendo il danno inflitto del 90%',
+    story: 'Questa carta è stata creata con lo scopo di far ragequittare il nemico',
 
-  cardName: 'carta trappola',
+    score: {
+      power: 0,  // r
+      toughness: 1
+    }
 
-  cost: {
-    genericCostNumber: 1,
-    costFields: [ // colors array con riferimento a fieldCodes
-      fieldCodes[1],
-      fieldCodes[2]
-    ],
   },
 
-  picture: 'images/cartatrappola.png',  // da inserire immagine
-  cardType: cardTypes[2],
-  cardObject: 'Carta trappola',
+  // sesta carta -------------------------------------
+  {
 
-  editionType: editions['SP'],
+    cardName: 'Cristallo della libertà',
 
-  description: 'Quando il nemico attacca, si attiva questa carta trappola, riducendo il danno inflitto del 90%',
-  story: 'Questa carta è stata creata con lo scopo di far ragequittare il nemico',
+    cost: {
+      genericCostNumber: 3,
+      costFields: [ // colors array con riferimento a fieldCodes
+        fieldCodes[2],
+        fieldCodes[0]
+      ],
+    },
 
-  score: {
-    power: 0,  // r
-    toughness: 1
+    picture: 'images/cristallo.png',  // da inserire immagine
+    cardType: cardTypes[3],
+    cardObject: 'Cristallo',
+
+    editionType: editions['SP'],
+
+    description: 'Il cristallo della libertà permette, all\'uso, di scongelare i tuoi alleati e di infliggere danni ai nemici ',
+    story: 'Cristallo creato con le lacrime degli dei',
+
+    score: {
+      power: 0,  // r
+      toughness: 0
+    }
+  }
+  ];
+  console.log(cards);
+
+  // funzione che filtra cercando il "power" -> "score" = al numero che gli abbiamo dato
+  function filterByPower(powerValue, array) {
+
+    return array.filter((element) => {
+      return element.score.power === powerValue;
+    });
+  }
+  console.log(' >>> CARTE FILTRATE PER POWER 3', filterByPower(5,cards));
+
+
+  function render(DOMElementId, array) {
+    const cardListHTMLElement = document.getElementById(DOMElementId);
+
+    array.forEach((element) => {
+      cardListHTMLElement.innerHTML += `<li> ${element.cardName}</li>`;
+    });
   }
 
-},
 
-// sesta carta -------------------------------------
-{
 
-  cardName: 'Cristallo della libertà',
-
-  cost: {
-    genericCostNumber: 3,
-    costFields: [ // colors array con riferimento a fieldCodes
-      fieldCodes[2],
-      fieldCodes[0]
-    ],
-  },
-
-  picture: 'images/cristallo.png',  // da inserire immagine
-  cardType: cardTypes[3],
-  cardObject: 'Cristallo',
-
-  editionType: editions['SP'],
-
-  description: 'Il cristallo della libertà permette, all\'uso, di scongelare i tuoi alleati e di infliggere danni ai nemici ',
-  story: 'Cristallo creato con le lacrime degli dei',
-
-  score: {
-    power: 0,  // r
-    toughness: 0
-  }
-}
-];
-console.log(cards);
-
-// funzione che filtra cercando il "power" -> "score" = al numero che gli abbiamo dato
-function filterByPower(powerValue, array) {
-
-  return array.filter((element) => {
-    return element.score.power === powerValue;
-  });
-}
-console.log(' >>> CARTE FILTRATE PER POWER 3', filterByPower(5,cards));
+})
